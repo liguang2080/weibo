@@ -12,8 +12,19 @@ And then execute:
 
     $ bundle
     
+    or
+    
+    $bundle update
+    
 ## 使用
-
+  
+  配置文件: Rails.root + "/config/weibo.yml"
+    
+    production:
+      key: 'XXXXX446XXX'
+      secret: 'XXXXXX784a52b45XXXXXXXXXXXXXX'
+      redirect_uri: 'http://www.url.com/callback'
+  
  授权:
  
     站外应用:
