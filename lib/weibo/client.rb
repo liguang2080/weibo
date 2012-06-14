@@ -1,3 +1,5 @@
+require "rest-client"
+
 module Weibo
   class Client
     attr_reader :oauth
