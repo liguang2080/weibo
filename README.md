@@ -17,9 +17,26 @@ Or install it yourself as:
     $ gem install weibo
 
 ## Usage
+ #  授权:
+    站外应用:
+    class WeiboController < ApplicationController
+      def connect
+        redirect_to Weibo::Oauth.authorize_url
+      end
 
-TODO: Write usage instructions here
-
+      def callback
+        access_token = Weibo::Oauth.get_access_token_by_code(params[:code])
+        render :text => access_token.inspect
+      end
+    end
+    
+    站内应用:
+    access_token = Weibo::Oauth.parse_signed_request(signed_request) #返回加密前的数据
+    
+  # 请求:
+    client = Weibo::Client.new(weibo_access_token, weibo_uid)
+    client.update("Hi! what are you doing!")
+    
 ## Contributing
 
 1. Fork it
