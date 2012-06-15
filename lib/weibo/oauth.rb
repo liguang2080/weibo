@@ -44,7 +44,7 @@ module Weibo
       end
       return nil if data["algorithm"].upcase != "HMAC-SHA256"
 
-      expected_sig = OpenSSL::HMAC.digest("sha256", self.client_secret, payload)
+      expected_sig = OpenSSL::HMAC.digest("sha256", Config.secret, payload)
       (sig != expected_sig) ? nil : data
     end
 
