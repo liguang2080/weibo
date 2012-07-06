@@ -42,12 +42,12 @@ module Weibo
     ################# 关系接口
 
     def friendships_followers(options = {})
-      default_params = { :cursor => -1, :count => 200, :uid => @weibo_uid }
+      default_params = { :cursor => 0, :count => 200, :uid => @weibo_uid }
       self.oauth.get "friendships/followers", default_params.merge(options)
     end
 
     def friendships_friends(options = {})
-      default_params = { :cursor => -1, :count => 200, :uid => @weibo_uid }
+      default_params = { :cursor => 0, :count => 200, :uid => @weibo_uid }
       self.oauth.get "friendships/friends", default_params.merge(options)
     end
 
