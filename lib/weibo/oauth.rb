@@ -19,8 +19,9 @@ module Weibo
       JSON.parse RestClient.post(api_url(path), parameters, :Authorization => "OAuth2 #{@access_token}")
     end
 
-    def self.authorize_url
-      AUTHORIZE_URL + "?client_id=#{Config.key}&redirect_uri=#{Config.redirect_uri}&response_type=code"
+    def self.authorize_url(options = {})
+      url = AUTHORIZE_URL + "?client_id=#{Config.key}&redirect_uri=#{Config.redirect_uri}&response_type=code"
+      options.keys.length > 0 ? (url + "&" + options.map {|k,v| "#{k}=#{v}"}.join("&")) : url
     end
 
     def self.get_access_token_by_code(code)
