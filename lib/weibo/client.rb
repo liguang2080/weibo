@@ -37,6 +37,10 @@ module Weibo
       default_params = { :mid => mid, :type => 1, :isBase62 => 1 }
       self.oauth.get "statuses/queryid", default_params.merge(options)
     end
+    
+    def statuses_repost_by_me(options = {})
+      self.oauth.get "statuses/repost_by_me", default_params.merge(options)
+    end
 
 
     ################# 关系接口
