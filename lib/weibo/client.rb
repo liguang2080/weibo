@@ -39,7 +39,7 @@ module Weibo
     end
     
     def statuses_repost_by_me(options = {})
-      self.oauth.get "statuses/repost_by_me", default_params.merge(options)
+      self.oauth.get "statuses/repost_by_me", options
     end
 
 
