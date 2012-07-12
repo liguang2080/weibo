@@ -12,15 +12,15 @@ module Weibo
     ################# 微博接口
 
     def statuses_update(status, options = {})
-      self.oauth.post("statuses/update", :status  => status)
+      self.oauth.post "statuses/update", :status  => status
     end
 
     def statuses_upload(status, pic_path, options = {})
-      self.oauth.post('statuses/upload', :status => status, :pic => File.new(File.expand_path(pic_path)))
+      self.oauth.post 'statuses/upload', :status => status, :pic => File.new(File.expand_path(pic_path))
     end
 
     def statuses_show(status_id, options = {})
-      self.oauth.get("statuses/show", :id => status_id)
+      self.oauth.get "statuses/show", :id => status_id
     end
 
     def statuses_user_timeline(options = {})
@@ -40,6 +40,11 @@ module Weibo
     
     def statuses_repost_by_me(options = {})
       self.oauth.get "statuses/repost_by_me", options
+    end
+    
+    def statuses_repost(status_id, options = {})
+      default_params = { :id => status_id }
+      self.oauth.post 'statuses/repost', default_params.merge(options)
     end
 
 
