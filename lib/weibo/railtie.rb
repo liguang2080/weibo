@@ -1,6 +1,7 @@
+# -*- encoding : utf-8 -*-
 module Weibo
   class Railtie < ::Rails::Railtie
-    config.after_initialize do
+    initializer "加载rails环境下的config" do
       Weibo::Config.load_config
     end
   end
