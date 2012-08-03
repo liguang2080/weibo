@@ -20,12 +20,12 @@ module Weibo
     end
 
     def self.authorize_url(options = {})
-      url = AUTHORIZE_URL + "?client_id=#{Config.key}&redirect_uri=#{Config.redirect_uri}&response_type=code"
+      url = AUTHORIZE_URL + "?client_id=#{Config.app_key}&redirect_uri=#{Config.redirect_uri}&response_type=code"
       options.keys.length > 0 ? (url + "&" + options.map {|k,v| "#{k}=#{v}"}.join("&")) : url
     end
 
     def self.get_access_token_by_code(code)
-      response = RestClient.post(ACCESS_TOKEN_URL, :client_id => Config.key, :client_secret => Config.secret,
+      response = RestClient.post(ACCESS_TOKEN_URL, :client_id => Config.app_key, :client_secret => Config.app_secret,
                                  :grant_type => "authorization_code", :code => code, :redirect_uri => Config.redirect_uri)
       JSON.parse(response)
     end
@@ -45,7 +45,7 @@ module Weibo
       end
       return nil if data["algorithm"].upcase != "HMAC-SHA256"
 
-      expected_sig = OpenSSL::HMAC.digest("sha256", Config.secret, payload)
+      expected_sig = OpenSSL::HMAC.digest("sha256", Config.app_secret, payload)
       (sig != expected_sig) ? nil : data
     end
 

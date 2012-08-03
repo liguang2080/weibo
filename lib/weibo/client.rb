@@ -60,12 +60,10 @@ module Weibo
       self.oauth.get "friendships/friends", default_params.merge(options)
     end
 
-    # add by github user helix_dan start 2012-08-03 11:41 am
     def friendships_friends_bilateral(uid, options = {})
       default_params = { :page => 1, :count => 50, :sort => 0 }
       self.oauth.get "friendships/friends/bilateral", default_params.merge(options)
     end
-    # add by helix_dan end
 
     def friendships_create(uid)
       self.oauth.post("friendships/create", :uid  => uid)
