@@ -21,8 +21,8 @@ And then execute:
   配置文件: Rails.root + "/config/weibo.yml"
     
     production:
-      key: 'XXXXX446XXX'
-      secret: 'XXXXXX784a52b45XXXXXXXXXXXXXX'
+      app_key: 'XXXXX446XXX'
+      app_secret: 'XXXXXX784a52b45XXXXXXXXXXXXXX'
       redirect_uri: 'http://www.url.com/callback'
   
  授权:
