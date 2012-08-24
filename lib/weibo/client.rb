@@ -18,6 +18,11 @@ module Weibo
     def statuses_upload(status, pic_path, options = {})
       self.oauth.post 'statuses/upload', :status => status, :pic => File.new(File.expand_path(pic_path))
     end
+    
+    def statuses_upload_url_text(status, url, options = {})
+      default_params = { :status => status, :url => url }
+      self.oauth.post 'statuses/upload_url_text', default_params.merge(options)
+    end
 
     def statuses_show(status_id, options = {})
       self.oauth.get "statuses/show", :id => status_id
