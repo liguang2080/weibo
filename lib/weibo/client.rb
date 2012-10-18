@@ -18,7 +18,7 @@ module Weibo
     def statuses_upload(status, pic_path, options = {})
       self.oauth.post 'statuses/upload', :status => status, :pic => File.new(File.expand_path(pic_path))
     end
-    
+
     def statuses_upload_url_text(status, url, options = {})
       default_params = { :status => status, :url => url }
       self.oauth.post 'statuses/upload_url_text', default_params.merge(options)
@@ -26,6 +26,12 @@ module Weibo
 
     def statuses_show(status_id, options = {})
       self.oauth.get "statuses/show", :id => status_id
+    end
+
+    def statuses_exist?(status_id)
+      statuses_show(status_id)
+    rescue RestClient::BadRequest => e
+      false
     end
 
     def statuses_user_timeline(options = {})
@@ -42,11 +48,11 @@ module Weibo
       default_params = { :mid => mid, :type => 1, :isBase62 => 1 }
       self.oauth.get "statuses/queryid", default_params.merge(options)
     end
-    
+
     def statuses_repost_by_me(options = {})
       self.oauth.get "statuses/repost_by_me", options
     end
-    
+
     def statuses_repost(status_id, options = {})
       default_params = { :id => status_id }
       self.oauth.post 'statuses/repost', default_params.merge(options)
@@ -74,7 +80,7 @@ module Weibo
       self.oauth.post("friendships/create", :uid  => uid)
     end
 
-    
+
 
 
     #################  用户接口
