@@ -13,10 +13,20 @@ module Weibo
 
     def get(path, parameters = {})
       JSON.parse RestClient.get(api_url(path), :params => parameters, :Authorization => "OAuth2 #{@access_token}")
+    rescue Exception => e
+      File.open(Rails.root + "log/weibo.log", "a") do |f|
+        f.puts "-------#{Time.zone.now}----------"
+        f.puts e.inspect
+      end
     end
 
     def post(path, parameters = {})
       JSON.parse RestClient.post(api_url(path), parameters, :Authorization => "OAuth2 #{@access_token}")
+    rescue Exception => e
+      File.open(Rails.root + "log/weibo.log", "a") do |f|
+        f.puts "-------#{Time.zone.now}----------"
+        f.puts e.inspect
+      end
     end
 
     def self.authorize_url(options = {})
