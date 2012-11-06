@@ -20,6 +20,8 @@ module Weibo
         f.puts e.inspect
         f.puts ">>>>parameters"
         f.puts parameters.inspect
+        f.puts ">>>>backtrace"
+        f.puts e.backtrace
         f.puts "-------------------------------------------------------------"
         f.puts ""
       end
