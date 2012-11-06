@@ -15,8 +15,13 @@ module Weibo
       JSON.parse RestClient.get(api_url(path), :params => parameters, :Authorization => "OAuth2 #{@access_token}")
     rescue Exception => e
       File.open(Rails.root + "log/weibo.log", "a") do |f|
-        f.puts "-------#{Time.zone.now}----------"
+        f.puts ""
+        f.puts "---------------------#{Time.zone.now}------------------------"
         f.puts e.inspect
+        f.puts ">>>>parameters"
+        f.puts parameters.inspect
+        f.puts "-------------------------------------------------------------"
+        f.puts ""
       end
     end
 
