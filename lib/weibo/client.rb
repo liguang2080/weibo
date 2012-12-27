@@ -58,6 +58,11 @@ module Weibo
       self.oauth.post 'statuses/repost', default_params.merge(options)
     end
 
+#==============add by yu xiao dan start 2012-10-17
+    def statuses_mentions(options = {})
+      self.oauth.post 'statuses/mentions', options
+    end
+#==============add by yu xiao dan end
 
     ################# 关系接口
 
